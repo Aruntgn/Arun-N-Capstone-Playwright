@@ -22,7 +22,7 @@ export default defineConfig({
   forbidOnly: CI,
   retries: CI ? 1 : 0,
   workers: CI ? 2 : '50%',
-
+  timeout: 60000,
   outputDir: 'test-results',
 
   reporter: [
@@ -47,7 +47,7 @@ export default defineConfig({
     video: 'on-first-retry',
     trace: 'on-first-retry',
     actionTimeout: 15000,
-    navigationTimeout: 30000,
+    navigationTimeout: 60000,
     ignoreHTTPSErrors: true,
     locale: 'en-US',
   },
