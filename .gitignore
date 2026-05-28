@@ -1,8 +1,25 @@
-
-# Playwright
+# Node
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+
+# Execution-generated (never commit)
+test-results/
+playwright-report/
+blob-report/
+allure-results/
+allure-report/
+
+# Playwright internals
+playwright/.cache/
+playwright/.auth/
+
+# Environment secrets
+.env.local
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Screenshots — folder tracked, images git-ignored
+screenshots/*.png
+screenshots/*.jpg
