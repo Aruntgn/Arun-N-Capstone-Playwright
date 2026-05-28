@@ -48,8 +48,8 @@ export class BasePage {
    * Handles OrangeHRM's async loading behavior
    */
   async waitForPageLoad() {
-    await this.page.waitForLoadState('networkidle');
-  }
+    await this.page.waitForLoadState('domcontentloaded');
+    }
 
   /**
    * Wait for a specific URL pattern to be reached
