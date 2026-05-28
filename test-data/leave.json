@@ -1,0 +1,24 @@
+{
+  "leaveTypes": [
+    "Annual Leave",
+    "Casual Leave",
+    "Medical Leave"
+  ],
+  "validLeave": {
+    "type": "Annual Leave",
+    "fromDate": "2025-08-01",
+    "toDate": "2025-08-02",
+    "comment": "Planned vacation"
+  },
+  "invalidLeave": {
+    "fromDate": "2025-08-10",
+    "toDate": "2025-08-05",
+    "comment": "Invalid date range test"
+  },
+  "filterStatus": [
+    "Pending",
+    "Approved",
+    "Rejected",
+    "Cancelled"
+  ]
+}
