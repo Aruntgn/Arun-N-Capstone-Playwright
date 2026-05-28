@@ -1,0 +1,20 @@
+{
+  "newCandidate": {
+    "firstName": "Test",
+    "middleName": "QA",
+    "lastName": "Candidate",
+    "email": "testqa.candidate@example.com",
+    "contactNumber": "9876543210"
+  },
+  "invalidCandidate": {
+    "firstName": "",
+    "lastName": "",
+    "email": "invalid-email"
+  },
+  "searchCandidate": {
+    "name": "Test Candidate"
+  },
+  "vacancyFilters": {
+    "status": "Active"
+  }
+}
