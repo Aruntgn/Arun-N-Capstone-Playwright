@@ -1,0 +1,19 @@
+{
+  "newUser": {
+    "role": "Admin",
+    "employeeName": "Admin",
+    "status": "Enabled",
+    "username": "testadmin_qa",
+    "password": "Admin@12345",
+    "confirmPassword": "Admin@12345"
+  },
+  "searchUser": {
+    "username": "Admin",
+    "role": "Admin",
+    "status": "Enabled"
+  },
+  "invalidUser": {
+    "username": "",
+    "password": "short"
+  }
+}
