@@ -8,10 +8,6 @@ import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage.js';
 import { DashboardPage } from '../pages/DashboardPage.js';
 
-/**
- * Extended test fixture with OrangeHRM page objects pre-initialized
- * Usage in tests: import { test } from '../fixtures/index.js'
- */
 export const test = base.extend({
 
   // Provides a LoginPage instance to any test that requests it
@@ -20,17 +16,21 @@ export const test = base.extend({
     await use(loginPage);
   },
 
-  // Provides an authenticated DashboardPage — login happens automatically
+  // Provides authenticated DashboardPage — login handled automatically
   authenticatedPage: async ({ page }, use) => {
     const loginPage = new LoginPage(page);
     await loginPage.navigateToLogin();
-    await loginPage.login(
+    await loginPage.loginAndWaitForDashboard(
       process.env.ADMIN_USERNAME || 'Admin',
       process.env.ADMIN_PASSWORD || 'admin123'
     );
+    // Wait for dashboard to fully settle across all browsers
+    await page.waitForURL('**/dashboard/**', { timeout: 60000 });
+    await page.waitForLoadState('domcontentloaded');
     const dashboardPage = new DashboardPage(page);
     await use(dashboardPage);
   },
+
 });
 
 export { expect } from '@playwright/test';
