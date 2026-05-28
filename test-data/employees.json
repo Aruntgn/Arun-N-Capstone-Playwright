@@ -1,0 +1,16 @@
+{
+  "newEmployee": {
+    "firstName": "Arun",
+    "middleName": "QA",
+    "lastName": "Automation",
+    "employeeId": ""
+  },
+  "searchEmployee": {
+    "firstName": "Arun",
+    "lastName": "Automation"
+  },
+  "invalidSearch": {
+    "firstName": "ZZZNOTEXIST",
+    "lastName": "ZZZNOTEXIST"
+  }
+}
