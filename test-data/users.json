@@ -1,0 +1,33 @@
+{
+  "validAdmin": {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "invalidUsers": [
+    {
+      "username": "invalid_user",
+      "password": "wrongpassword",
+      "description": "Invalid username and password"
+    },
+    {
+      "username": "Admin",
+      "password": "wrongpassword",
+      "description": "Valid username, invalid password"
+    },
+    {
+      "username": "",
+      "password": "",
+      "description": "Empty credentials"
+    }
+  ],
+  "newEmployee": {
+    "firstName": "Test",
+    "middleName": "QA",
+    "lastName": "Automation",
+    "employeeId": "TA001"
+  },
+  "searchEmployee": {
+    "name": "Test Automation",
+    "employeeId": "TA001"
+  }
+}
