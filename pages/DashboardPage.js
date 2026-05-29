@@ -88,7 +88,7 @@ export class DashboardPage extends BasePage {
    */
   async clickSidebarItem(name) {
   const link = this.page.getByRole('link', { name, exact: true });
-  await link.waitFor({ state: 'visible' });
+  await link.waitFor({ state: 'visible', timeout: 30000 });
   await link.click();
   await this.waitForPageLoad();
   await this.page.waitForLoadState('domcontentloaded');

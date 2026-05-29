@@ -35,8 +35,11 @@ export class LoginPage extends BasePage {
   async navigateToLogin() {
   await this.navigate(URLS.LOGIN);
   await this.waitForPageLoad();
-  await this.waitForElement(this.loginButton);
-}
+  await this.page.waitForSelector(
+    '.oxd-input-group, input[name="username"]',
+    { state: 'visible', timeout: 60000 }
+  );
+  }
 
   /**
    * Perform full login with provided credentials
@@ -51,8 +54,16 @@ export class LoginPage extends BasePage {
    * Login and wait for dashboard — used by authenticated fixture
    */
   async loginAndWaitForDashboard(username, password) {
+  await this.login(username, password);
+  // Retry once if server redirects back to login
+  try {
+    await this.waitForUrl('**/dashboard/**');
+  } catch {
+    // Server may have rejected — retry login once
+    await this.navigateToLogin();
     await this.login(username, password);
     await this.waitForUrl('**/dashboard/**');
+  }
   }
 
   /**

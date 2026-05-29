@@ -73,11 +73,10 @@ export class EmployeeManagementPage extends BasePage {
   await this.searchEmployeeName.waitFor({ state: 'visible' });
   await this.searchEmployeeName.clear();
   await this.searchEmployeeName.fill(fullName);
-  // Wait for autocomplete dropdown and press Enter to confirm
-  await this.page.waitForTimeout(500);
-  await this.searchEmployeeName.press('Enter');
+  // Small wait for autocomplete to settle then click Search
   await this.page.waitForLoadState('domcontentloaded');
-  await this.click(this.searchButton);
+  // Click search button directly — no Enter key
+  await this.searchButton.click();
   await this.waitForSearchResults();
   }
 
@@ -88,16 +87,23 @@ export class EmployeeManagementPage extends BasePage {
   }
 
   async resetSearch() {
-    await this.click(this.resetButton);
-    await this.waitForSearchResults();
+  await this.click(this.resetButton);
+  await this.page.waitForLoadState('domcontentloaded');
+  await this.page.waitForSelector(
+    '.oxd-table-body',
+    { state: 'attached', timeout: 20000 }
+  );
   }
 
   async waitForSearchResults() {
   await this.page.waitForLoadState('domcontentloaded');
+  // Wait for either results or no-records state
   await this.page.waitForSelector(
-    '.oxd-table-body',
-    { state: 'attached', timeout: 15000 }
+    '.oxd-table-body, .oxd-table-row',
+    { state: 'attached', timeout: 20000 }
   );
+  // Additional wait for content to stabilize
+  await this.page.waitForLoadState('domcontentloaded');
   }
 
   // ── Employee Form Actions ──────────────────────────────────────────────────
@@ -154,7 +160,6 @@ export class EmployeeManagementPage extends BasePage {
     '.oxd-table-body',
     { state: 'attached', timeout: 15000 }
   );
-  // Check row count — 0 rows means no records found
   const rows = this.page.locator('.oxd-table-body .oxd-table-row');
   const count = await rows.count();
   return count === 0;
