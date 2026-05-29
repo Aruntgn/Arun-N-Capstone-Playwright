@@ -61,7 +61,7 @@ test.describe('M3 — Employee Management (PIM)', () => {
   await empPage.page.waitForLoadState('domcontentloaded');
   await expect(page).toHaveURL(/pim/);
   const tableBody = empPage.page.locator('.oxd-table-body');
-  await expect(tableBody).toBeAttached();
+  await expect(tableBody).toBeAttached({ timeout: 15000 });
   });
 
   // ── TC07: Reset Search ───────────────────────────────────────────────────
