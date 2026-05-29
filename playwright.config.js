@@ -20,8 +20,8 @@ export default defineConfig({
 
   fullyParallel: true,
   forbidOnly: CI,
-  retries: CI ? 1 : 0,
-  workers: CI ? 2 : '50%',
+  retries: 1,
+  workers: CI ? 2 : 2,
   timeout: 60000,
   outputDir: 'test-results',
 
