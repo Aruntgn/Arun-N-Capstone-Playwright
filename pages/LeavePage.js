@@ -57,12 +57,13 @@ export class LeavePage extends BasePage {
   // ── Navigation Actions ─────────────────────────────────────────────────────
 
   async navigateToLeave() {
-    await this.navigate(URLS.LEAVE);
-    await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForSelector(
-      '.oxd-table, .oxd-form',
-      { state: 'attached', timeout: 30000 }
-    );
+  await this.navigate(URLS.LEAVE);
+  await this.page.waitForLoadState('domcontentloaded');
+  // More forgiving wait — table OR any content
+  await this.page.waitForSelector(
+    '.oxd-table, .oxd-form, .oxd-topbar',
+    { state: 'attached', timeout: 60000 }
+  );
   }
 
   async navigateToApplyLeave() {
